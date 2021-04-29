@@ -228,6 +228,10 @@ SUBSYSTEM_DEF(shuttle)
 		to_chat(user, "You must provide a reason.")
 		return
 
+	if(length(call_reason) > MAX_CALL_SHUTTLE_REASON_LENGTH)
+		to_chat(user, "Too many characters in your reason.")
+		return
+
 	var/area/signal_origin = get_area(user)
 	var/emergency_reason = "\nNature of emergency:\n\n[call_reason]"
 	var/security_num = seclevel2num(get_security_level())

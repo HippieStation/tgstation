@@ -571,6 +571,7 @@
 	popup.set_content(dat)
 	popup.open()
 
+/* HIPPIE START added max shuttle call reason character limit
 /obj/machinery/computer/communications/proc/get_javascript_header(form_id)
 	var/dat = {"<script type="text/javascript">
 						function getLength(){
@@ -587,6 +588,7 @@
 						}
 					</script>"}
 	return dat
+Hippie End*/
 
 /obj/machinery/computer/communications/proc/get_call_shuttle_form(ai_interface = 0)
 	var/form_id = "callshuttle"

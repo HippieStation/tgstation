@@ -37,3 +37,22 @@
 			to_chat(src, "<span class='notice'>[A] opened.</span>")
 		else
 			to_chat(src, "<span class='notice'>Unable to locate airlock. It may be out of camera range.</span>")
+
+/mob/living/silicon/ai/proc/ai_call_shuttle()
+	if(control_disabled)
+		to_chat(usr, "<span class='warning'>Wireless control is disabled!</span>")
+		return
+
+	var/reason = input(src, "What is the nature of your emergency? ([CALL_SHUTTLE_REASON_LENGTH] characters required and can't have more than [MAX_CALL_SHUTTLE_REASON_LENGTH] Characters.)", "Confirm Shuttle Call") as null|text
+
+	if(incapacitated())
+		return
+
+	if(trim(reason))
+		SSshuttle.requestEvac(src, reason)
+
+	// hack to display shuttle timer
+	if(!EMERGENCY_IDLE_OR_RECALLED)
+		var/obj/machinery/computer/communications/C = locate() in GLOB.machines
+		if(C)
+			C.post_status("shuttle")

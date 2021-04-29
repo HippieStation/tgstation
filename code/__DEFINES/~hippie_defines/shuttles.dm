@@ -1,1 +1,2 @@
 #define SHUTTLE_DISABLED	"disabled"
+#define MAX_CALL_SHUTTLE_REASON_LENGTH 112
