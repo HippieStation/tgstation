@@ -195,21 +195,19 @@
 					if(!F.BB)//this has no bullet
 						return FALSE
 					R = F.BB
-
-				if(!R)
-					return FALSE
+					
 				for(var/I in synthesis.special_traits)
 					var/datum/special_trait/D = new I
 					if(D.name == params["name"])
-						if(locate(D) in R.special_traits)
-							to_chat(usr, "<span class='warning'>[R] already has that trait!</span>")
-							return FALSE
-						else
-							R.special_traits += D//doesn't work with lazyadd due to type mismatch (it checks for an explicitly initialized list)
-							R.speed += SPECIAL_TRAIT_ADD_SPEED_DEBUFF
-							D.on_apply(R, R.identifier)
-							reagents.remove_any(SPECIAL_TRAIT_ADD_COST)
-							to_chat(usr, "<span class='notice'>You add the trait [D] to [R]</span>")
-							return TRUE
-
+						if(R)
+							if(locate(D) in R.special_traits)
+								to_chat(usr, "<span class='warning'>[R] already has that trait!</span>")
+								return FALSE
+							else
+								R.special_traits += D//doesn't work with lazyadd due to type mismatch (it checks for an explicitly initialized list)
+								R.speed += SPECIAL_TRAIT_ADD_SPEED_DEBUFF
+								D.on_apply(R, R.identifier)
+								reagents.remove_any(SPECIAL_TRAIT_ADD_COST)
+								to_chat(usr, "<span class='notice'>You add the trait [D] to [R]</span>")
+								return TRUE
 	return FALSE

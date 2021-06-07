@@ -31,6 +31,7 @@
 #define SPECIAL_TRAIT_ACID /datum/special_trait/acid
 #define SPECIAL_TRAIT_FLUIDIC /datum/special_trait/fluidic
 #define SPECIAL_TRAIT_EXPLOSIVE /datum/special_trait/explosive
+#define SPECIAL_TRAIT_SLIPPERY /datum/special_trait/slippery
 
 //SPECIAL IDENTIFIERS - saving me some istype checks
 #define FORGED_MELEE_SINGLEHANDED "singlehanded"
@@ -356,3 +357,7 @@
 			source.reagent_type.reaction_turf(A, type, amount)
 		else if(isobj(A))
 			source.reagent_type.reaction_obj(A, type, amount)
+
+/datum/special_trait/slippery
+	name = "Slippery"
+	desc = "Honk honk."

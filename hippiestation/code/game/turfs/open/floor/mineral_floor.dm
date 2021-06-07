@@ -5,23 +5,31 @@
 	icons = list("titanium_white","titanium_dam1")
 	var/datum/reagent/reagent_type
 	var/obj/effect/particle_effect/fakeholder
+	var/boil_temp = 3000
+
+/turf/open/floor/mineral/reagent/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/Check_Traits), 1)
+
+/turf/open/floor/mineral/reagent/proc/Check_Traits()
+	if(LAZYFIND(reagent_type.special_traits, SPECIAL_TRAIT_SLIPPERY))
+		MakeSlippery(TURF_WET_WATER, INFINITY, 0, INFINITY, TRUE)
 
 /turf/open/floor/mineral/reagent/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature && !fakeholder)
-		fakeholder = new(get_turf(src))
-		fakeholder.create_reagents(50)
-		fakeholder.reagents.add_reagent(reagent_type.type, 50, reagtemp = exposed_temperature)
-		fakeholder.reagents.handle_reactions()
-		QDEL_IN(fakeholder, 150)
-
-	else if(exposed_temperature && fakeholder && !QDELETED(fakeholder))
-		fakeholder.reagents.chem_temp = exposed_temperature
-		fakeholder.reagents.handle_reactions()
-
-	if(exposed_temperature > 3000)
-		for(var/mob/M in viewers(3, src))
-			to_chat(M, ("<span class='warning'>[icon2html(src, viewers(src))] The [src] boils away in the extreme heat!</span>"))
-		vapourise()
+	if(exposed_temperature)
+		if(!QDELETED(fakeholder))
+			fakeholder.reagents.chem_temp = exposed_temperature
+			fakeholder.reagents.handle_reactions()
+		else
+			fakeholder = new(get_turf(src))
+			fakeholder.create_reagents(50)
+			fakeholder.reagents.add_reagent(reagent_type.type, 50, reagtemp = exposed_temperature)
+			fakeholder.reagents.handle_reactions()
+			QDEL_IN(fakeholder, 150)
+		if(exposed_temperature > boil_temp)
+			for(var/mob/M in viewers(3, src))
+				to_chat(M, ("<span class='warning'>[icon2html(src, viewers(src))] The [src] boils away in the extreme heat!</span>"))
+			vapourise()
 	..()
 
 /turf/open/floor/mineral/reagent/proc/vapourise()

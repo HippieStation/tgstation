@@ -7,6 +7,7 @@
 	mineralType = "reagent"
 	materials = list(MAT_REAGENT=500)
 	var/datum/reagent/reagent_type
+	var/list/special_traits
 
 /obj/item/stack/tile/mineral/reagent/change_stack(mob/user,amount)
 	var/obj/item/stack/tile/mineral/reagent/F = new(user, amount, FALSE)

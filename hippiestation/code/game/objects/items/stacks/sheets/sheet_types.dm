@@ -17,9 +17,8 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 	))
 
 /obj/item/stack/sheet/mineral/reagent/Initialize(mapload, new_amount, merge = TRUE)
-	recipes = GLOB.reagent_recipes
 	. = ..()
-
+	recipes = GLOB.reagent_recipes
 
 /obj/item/stack/sheet/mineral/reagent/change_stack(mob/user,amount)
 	var/obj/item/stack/sheet/mineral/reagent/F = new(user, amount, FALSE)
@@ -131,6 +130,7 @@ GLOBAL_LIST_INIT(reagent_recipes, list ( \
 					F.singular_name = "[reagent_type] floor tile"
 					F.desc = "floor tiles made of [reagent_type]"
 					F.add_atom_colour(reagent_type.color, FIXED_COLOUR_PRIORITY)
+					F.special_traits = reagent_type.special_traits
 					break
 				else
 					qdel(RR)

@@ -23,7 +23,6 @@
 	if(fire)
 		open_flame()
 
-
 /obj/item/forged/proc/assign_properties()
 	if(reagent_type && weapon_type)
 		special_traits = list()
@@ -39,21 +38,21 @@
 		armour_penetration += force * 0.2
 
 /obj/item/forged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	user.changeNext_move(speed)
-	if(iscarbon(target) && reagent_type && proximity_flag)
-		var/mob/living/carbon/C = target
-		var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-		var/armour_block = C.getarmor(affecting, "melee") * 0.01
-		if(!armour_block)
-			armour_block = 1
-		C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
-		if(stabby < 1 && stabby > 0)
-			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
-	if(proximity_flag && reagent_type)
+	if(reagent_type && proximity_flag)
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+			var/armour_block = C.getarmor(affecting, "melee") * 0.01
+			if(!armour_block)
+				armour_block = 1
+			C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
+			if(stabby < 1 && stabby > 0)
+				reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
 				A.on_hit(target, user, src, FORGED_MELEE_SINGLEHANDED)
+		user.changeNext_move(speed)
 	..()
 
 /obj/item/forged/melee/dagger
@@ -144,21 +143,21 @@
 
 
 /obj/item/twohanded/forged/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	user.changeNext_move(speed)
-	if(iscarbon(target) && reagent_type && proximity_flag)
-		var/mob/living/carbon/C = target
-		var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
-		var/armour_block = C.getarmor(affecting, "melee") * 0.01
-		if(!armour_block)
-			armour_block = 1
-		C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
-		if(stabby < 1 && stabby > 0)
-			reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
-	if(proximity_flag && reagent_type)
+	if(reagent_type && proximity_flag)
+		if(iscarbon(target))
+			var/mob/living/carbon/C = target
+			var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(user.zone_selected))
+			var/armour_block = C.getarmor(affecting, "melee") * 0.01
+			if(!armour_block)
+				armour_block = 1
+			C.reagents.add_reagent(reagent_type.type, max(0, (0.2 * stabby) * max(1, armour_block - armour_penetration)))
+			if(stabby < 1 && stabby > 0)
+				reagent_type.reaction_mob(C, TOUCH, max(0, 1 / stabby))
 		for(var/I in special_traits)
 			var/datum/special_trait/A = I
 			if(prob(A.effectiveness))
 				A.on_hit(target, user, src, FORGED_MELEE_TWOHANDED)
+		user.changeNext_move(speed)
 	..()
 
 /obj/item/twohanded/forged/greatsword

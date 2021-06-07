@@ -83,7 +83,7 @@
 //BOUNCY
 
 /datum/reagent/lube
-	special_traits = list(SPECIAL_TRAIT_BOUNCY, SPECIAL_TRAIT_FLUIDIC)
+	special_traits = list(SPECIAL_TRAIT_BOUNCY, SPECIAL_TRAIT_FLUIDIC, SPECIAL_TRAIT_SLIPPERY)
 
 /datum/reagent/plastic_polymers
 	special_traits = list(SPECIAL_TRAIT_BOUNCY, SPECIAL_TRAIT_REFLECTIVE)
@@ -142,7 +142,7 @@
 	special_traits = list(SPECIAL_TRAIT_MAGNETIC)
 
 /datum/reagent/water
-	special_traits = list(SPECIAL_TRAIT_REFLECTIVE)
+	special_traits = list(SPECIAL_TRAIT_REFLECTIVE, SPECIAL_TRAIT_SLIPPERY)
 
 /datum/reagent/arclumin
 	special_traits = list(SPECIAL_TRAIT_UNSTABLE)
@@ -155,3 +155,6 @@
 
 /datum/reagent/colorful_reagent
 	special_traits = list(SPECIAL_TRAIT_FLUIDIC)
+
+/datum/reagent/consumable/banana
+	special_traits = list(SPECIAL_TRAIT_REFLECTIVE, SPECIAL_TRAIT_SLIPPERY)
