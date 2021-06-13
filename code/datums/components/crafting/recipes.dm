@@ -678,6 +678,20 @@
 	reqs = list(/obj/item/stack/sheet/metal = 15)
 	category = CAT_MISC
 
+/datum/crafting_recipe/bandageclava
+	name = "Bandageclava"
+	result = /obj/item/clothing/mask/bandage
+	time = 0
+	reqs = list(/obj/item/stack/medical/gauze = 1)
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/blindfold
+	name = "Bandage Blindfold"
+	result = /obj/item/clothing/glasses/blindfold/bandage
+	time = 0
+	reqs = list(/obj/item/stack/medical/gauze = 1)
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/mummy
 	name = "Mummification Bandages (Mask)"
 	result = /obj/item/clothing/mask/mummy

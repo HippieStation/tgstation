@@ -225,6 +225,12 @@
 	icon_state = "bumba"
 	item_state = "bumba"
 
+/obj/item/clothing/mask/bandage
+	name = "bandageclava"
+	desc = "Ishmael?"
+	icon_state = "bandageclava"
+	item_state = "bandageclava"
+
 /obj/item/clothing/mask/bandana
 	name = "botany bandana"
 	desc = "A fine bandana with nanotech lining and a hydroponics pattern."

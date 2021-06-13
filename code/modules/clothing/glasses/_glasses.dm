@@ -266,7 +266,6 @@
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
 	weldingvisortoggle(user)
 
-
 /obj/item/clothing/glasses/blindfold
 	name = "blindfold"
 	desc = "Covers the eyes, preventing sight."
@@ -312,6 +311,12 @@
 		M.appearance_flags |= RESET_COLOR
 		M.color = "#[H.eye_color]"
 		. += M
+
+obj/item/clothing/glasses/blindfold/bandage
+	name = "bandage blindfold"
+	desc = "A blindfold made out of gauze."
+	icon_state = "blindfoldwhite"
+	item_state = "blindfoldwhite"
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks flashes."

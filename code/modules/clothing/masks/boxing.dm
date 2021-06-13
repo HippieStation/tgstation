@@ -39,6 +39,7 @@
 		message = replacetext(message, "library", "biblioteca")
 		message = replacetext(message, "traitor", "traidor")
 		message = replacetext(message, "wizard", "mago")
+		message = replacetext(message, "good", "bueno")
 		message = uppertext(message)	//Things end up looking better this way (no mixed cases), and it fits the macho wrestler image.
 		if(prob(25))
 			message += " OLE!"
@@ -64,3 +65,4 @@
 	flags_inv = HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
 	visor_flags_inv = HIDEFACE|HIDEFACIALHAIR
 	w_class = WEIGHT_CLASS_SMALL
+
